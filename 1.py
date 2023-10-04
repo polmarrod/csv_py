@@ -14,6 +14,13 @@ class constants ():
     WEIGHT = "weight"
     AGE = "age"
     NEWHEADERS = ["Nom", "Equip", "Posicio", "Altura", "Pes", "Edat"]
+    NEWPOSITIONS = {
+        "Point Guard" : "Base",
+        "Shooting Guard" : "Escorta",
+        "Small Forward" : "Aler",
+        "Power Forward" : "Ala-pivot",
+        "Center" : "Pivot"
+    }
 
 def showLines(reader : enumerate):
     for index, row in reader:
@@ -39,23 +46,8 @@ def toDictionarie(reader : enumerate):
             dictionarie[constants.AGE].append(row[5])  
     return dictionarie
 def changePosition(book : dict[str, list]):
-    index = 0
-    cons = constants.POSITION
-    for index, position in enumerate(book[cons]):
-        match position:
-            case "Point Guard":
-                book[cons][index] = "Base"
-            case "Shooting Guard":
-                book[cons][index] = "Escorta"
-            case "Small Forward":
-                book[cons][index] = "Aler"
-            case "Power Forward":
-                book[cons][index] = "Ala-pivot"
-            case "Center":
-                book[cons][index] = "Pivot"
-            case other : 
-                ""
-        index += 1
+    for index, position in enumerate(book[constants.POSITION]):        
+        book[constants.POSITION][index] = constants.NEWPOSITIONS[position]
     return book      
 def changeHeightOrWeight(book : dict[str, list], parameter : str):
     value = 0.0
