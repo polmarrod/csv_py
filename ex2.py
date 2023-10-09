@@ -58,7 +58,7 @@ def ShowPlayersByParameter (book : dict[str, list], parameter :str):
 
 #endregion
 def main2 ():
-    file = getFile(constants.PATHNEWFITXERO, constants.SEPARADORNEW)
+    file = getFile(constants.SEPARADORNEW)
     book = toDictionarie(file)
     ShowPlayerWeight(book)
     ShowPlayerHeight(book)

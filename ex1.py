@@ -38,12 +38,13 @@ def newCSVFile(book : dict[str, list]):
                    }
             if any(row.values()):
                 writer.writerow(row)
-def main ():
-    file = getFile(constants.PATHFITXERO, constants.SEPARADOROLD)
+def main1 ():
+
+    file = getFile(separador = constants.SEPARADOROLD)
     book = toDictionarie(file)
     book = changePosition(book)
     book = changeHeightOrWeight(book, constants.HEIGHT)
     book = changeHeightOrWeight(book, constants.WEIGHT)
     book = changeAge(book, 0)
     newCSVFile(book)
-main()
+main1()

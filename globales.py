@@ -1,6 +1,7 @@
 import csv
+import tkinter as tk
+from tkinter import filedialog
 class constants ():
-    PATHFITXERO = "basket_players.csv"
     PATHNEWFITXERO = "jugadors_basket.csv"
     PATHFITXEROJSON = "jugadors_basket.json"
     FOOT = 2.54
@@ -13,7 +14,6 @@ class constants ():
     HEIGHT = "height"
     WEIGHT = "weight"
     AGE = "age"
-    
     NEWHEADERS = ["Nom", "Equip", "Posicio", "Altura", "Pes", "Edat"]
     NEWPOSITIONS = {
         "Point Guard" : "Base",
@@ -51,7 +51,11 @@ def showParameter (book : dict[str, list], parameter: str):
     for thing in book[parameter]:
         print(thing)
 
-def getFile(path : str, separador: str):
+def getFile(separador: str):
+    if separador == constants.SEPARADORNEW:
+        path = constants.PATHNEWFITXERO
+    else:
+        path = getPath()
     fileReader = open(path, "r", encoding= "ASCII")
     filecsv = csv.reader(fileReader,  delimiter = separador,)
     return enumerate(filecsv)
@@ -71,3 +75,6 @@ def toListOfDictionaries(reader : enumerate):
                 }
             )
     return listDict
+def getPath():
+    filename = askopenfilename() 
+    return filename
