@@ -2,6 +2,7 @@ import csv
 class constants ():
     PATHFITXERO = "basket_players.csv"
     PATHNEWFITXERO = "jugadors_basket.csv"
+    PATHFITXEROJSON = "jugadors_basket.json"
     FOOT = 2.54
     POUND = 0.45
     SEPARADOROLD= ";"
@@ -54,3 +55,19 @@ def getFile(path : str, separador: str):
     fileReader = open(path, "r", encoding= "ASCII")
     filecsv = csv.reader(fileReader,  delimiter = separador,)
     return enumerate(filecsv)
+
+def toListOfDictionaries(reader : enumerate):
+    listDict = []
+    for index, row in reader:
+        if index != 0:
+            listDict.append(
+                {
+                    constants.NAME : row[0],
+                    constants.TEAM : row[1],
+                    constants.POSITION : row[2],
+                    constants.HEIGHT : float(row[3]),
+                    constants.WEIGHT : float(row[4]),
+                    constants.AGE : float(row[5])
+                }
+            )
+    return listDict
